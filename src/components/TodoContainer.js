@@ -1,8 +1,13 @@
+import { Route, Routes } from 'react-router-dom';
 import React from 'react';
 import Header from './Header';
 import TodosList from './TodosList';
 import InputTodo from './InputTodo';
 import { v4 as uuidv4 } from 'uuid';
+import About from '../pages/About';
+import NotMatch from '../pages/NotMatch';
+import Navbar from './Navbar';
+import SinglePage from '../pages/SinglePage';
 
 class TodoContainer extends React.Component {
   state = {
@@ -76,18 +81,32 @@ class TodoContainer extends React.Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="inner">
-          <Header />
-          <InputTodo addTodoProps={this.addTodoItem} />
-          <TodosList
-            todos={this.state.todos}
-            handleChangeProps={this.handleChange}
-            handleDeleteProps={this.handleDelete}
-            setUpdate={this.setUpdate}
+      <>
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <div className="container">
+                <div className="inner">
+                  <Header />
+                  <InputTodo addTodoProps={this.addTodoItem} />
+                  <TodosList
+                    todos={this.state.todos}
+                    handleChangeProps={this.handleChange}
+                    handleDeleteProps={this.handleDelete}
+                    setUpdate={this.setUpdate}
+                  />
+                </div>
+              </div>
+            }
           />
-        </div>
-      </div>
+          <Route path="/about" element={<About />}>
+            <Route path=":slug" element={<SinglePage />} />
+          </Route>
+          <Route path="*" element={<NotMatch />} />
+        </Routes>
+      </>
     );
   }
 }
