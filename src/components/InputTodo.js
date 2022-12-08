@@ -37,7 +37,7 @@ const InputTodo = (props) => {
         name="title"
         onChange={onChange}
       />
-      <button type="button" className="input-submit">
+      <button type="submit" className="input-submit">
         Submit
       </button>
     </form>

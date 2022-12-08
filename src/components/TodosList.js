@@ -10,7 +10,7 @@ const TodosList = (props) => (
         key={todo.id}
         todo={todo}
         handleChangeProps={props.handleChangeProps}
-        handleDeletProps={props.handleDeleteProps}
+        handleDeleteProps={props.handleDeleteProps}
         setUpdate={props.setUpdate}
       />
     ))}
